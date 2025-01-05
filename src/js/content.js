@@ -53,16 +53,26 @@ function generateQRCode(container) {
 function createQRContainer() {
     console.log('[Content] 创建二维码容器');
     try {
-        if (!document.getElementById('qr-container')) {
-            const container = document.createElement('div');
-            container.id = 'qr-container';
-                        
-            document.body.appendChild(container);
-            generateQRCode(container);
-            console.log('[Content] 二维码容器创建成功');
-        } else {
-            console.log('[Content] 二维码容器已存在');
-        }
+        // 首先检查是否启用了二维码显示
+        chrome.storage.sync.get(['qrCodeEnabled'], function(result) {
+            const isEnabled = result.qrCodeEnabled !== undefined ? result.qrCodeEnabled : true; // 默认启用
+            
+            if (!isEnabled) {
+                console.log('[Content] 二维码显示已禁用');
+                return;
+            }
+            
+            if (!document.getElementById('qr-container')) {
+                const container = document.createElement('div');
+                container.id = 'qr-container';
+                
+                document.body.appendChild(container);
+                generateQRCode(container);
+                console.log('[Content] 二维码容器创建成功');
+            } else {
+                console.log('[Content] 二维码容器已存在');
+            }
+        });
     } catch (error) {
         console.error('[Content] 创建二维码容器失败:', error);
     }
@@ -124,6 +134,22 @@ function startObserving() {
         console.error('[Content] 初始化过程出错:', error);
     }
 })();
+
+// 监听存储变化
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === 'sync' && changes.qrCodeEnabled) {
+        const isEnabled = changes.qrCodeEnabled.newValue;
+        const container = document.getElementById('qr-container');
+        
+        if (!isEnabled && container) {
+            container.remove();
+            console.log('[Content] 二维码已移除');
+        } else if (isEnabled && !container) {
+            createQRContainer();
+            console.log('[Content] 二维码已重新显示');
+        }
+    }
+});
 
 // 导出函数供其他模块使用
 window.generateQRCode = generateQRCode; 
