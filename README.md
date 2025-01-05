@@ -18,9 +18,6 @@
 [license-shield]: https://img.shields.io/github/license/Harryleft/WebQR-Generator.svg?style=for-the-badge
 [license-url]: https://github.com/Harryleft/WebQR-Generator/blob/master/LICENSE
 
-# WebQR-Generater
-
-一个Chrome 扩展程序，可以为当前访问的网页生成带有网站图标的二维码。
 
 <details>
   <summary>目录</summary>
