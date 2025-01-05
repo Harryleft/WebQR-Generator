@@ -1,13 +1,58 @@
+<a id="readme-top"></a>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stars][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
+<!-- 在文件底部添加徽章链接定义 -->
+[contributors-shield]: https://img.shields.io/github/contributors/Harryleft/WebQR-Generator.svg?style=for-the-badge
+[contributors-url]: https://github.com/Harryleft/WebQR-Generator/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Harryleft/WebQR-Generator.svg?style=for-the-badge
+[forks-url]: https://github.com/Harryleft/WebQR-Generator/network/members
+[stars-shield]: https://img.shields.io/github/stars/Harryleft/WebQR-Generator.svg?style=for-the-badge
+[stars-url]: https://github.com/Harryleft/WebQR-Generator/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Harryleft/WebQR-Generator.svg?style=for-the-badge
+[issues-url]: https://github.com/Harryleft/WebQR-Generator/issues
+[license-shield]: https://img.shields.io/github/license/Harryleft/WebQR-Generator.svg?style=for-the-badge
+[license-url]: https://github.com/Harryleft/WebQR-Generator/blob/master/LICENSE
+
 # WebQR-Generater
 
 一个Chrome 扩展程序，可以为当前访问的网页生成带有网站图标的二维码。
 
-- [项目背景](#项目背景)
-- [功能特点](#功能特点)
-- [项目结构](#项目结构)
-- [安装方法](#安装方法)
-- [使用说明](#使用说明)
+<details>
+  <summary>目录</summary>
+  <ol>
+    <li><a href="#项目背景">项目背景</a></li>
+    <li><a href="#功能特点">功能特点</a></li>
+    <li><a href="#项目结构">项目结构</a></li>
+    <li><a href="#安装方法">安装方法</a></li>
+    <li><a href="#使用说明">使用说明</a></li>
+    <li><a href="#致谢">致谢</a></li>
+    <li><a href="#许可证">许可证</a></li>
+  </ol>
+</details>
 
+<div align="center">
+  <a href="https://github.com/Harryleft/WebQR-Generator">
+    <img src="icons/icon128.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">WebQR-Generator</h3>
+
+  <p align="center">
+    一个Chrome 扩展程序，可以为当前访问的网页生成带有网站图标的二维码
+    <br />
+    <a href="https://github.com/Harryleft/WebQR-Generator"><strong>查看文档 »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/Harryleft/WebQR-Generator/issues/new?labels=bug">报告Bug</a>
+    ·
+    <a href="https://github.com/Harryleft/WebQR-Generator/issues/new?labels=enhancement">功能建议</a>
+  </p>
+</div>
 
 ## 项目背景
 
@@ -25,25 +70,27 @@
 
 ## 项目结构
 
-```tree
-root/
-├── src/
-│   ├── js/
-│   │   ├── qrcode.js      # QR码生成库
-│   │   ├── content.js     # 内容脚本
-│   │   ├── background.js  # 后台脚本
-│   │   └── popup.js       # 弹出窗口脚本
-│   ├── css/
-│   │   ├── content.css    # 内容样式
-│   │   └── popup.css      # 弹出窗口样式
-│   │   └── style.css      # 全局样式
-│   └── html/
-│       └── popup.html     # 弹出窗口HTML
-├── icons/
-│   ├── icon16.png
-│   ├── icon48.png
-│   └── icon128.png
-└── manifest.json
+```
+WebQR-Generator/
+├── icons/                # 图标资源目录
+│   ├── icon16.png        # 16x16 图标
+│   ├── icon48.png        # 48x48 图标
+│   └── icon128.png       # 128x128 图标
+├── src/                  # 源代码目录
+│   ├── css/              # 样式文件
+│   │   ├── content.css   # 内容页样式
+│   │   ├── popup.css     # 弹出窗口样式
+│   │   └── style.css     # 全局通用样式
+│   ├── html/             # HTML 文件
+│   │   └── popup.html    # 弹出窗口页面
+│   └── js/               # JavaScript 文件
+│       ├── background.js # 后台服务脚本
+│       ├── content.js    # 内容注入脚本
+│       ├── popup.js      # 弹出窗口脚本
+│       └── qrcode.js     # 二维码生成脚本
+├── LICENSE               # MIT 许可证文件
+├── manifest.json         # 扩展配置文件
+└── README.md             # 项目说明文档
 ```
 
 ## 安装方法
@@ -75,3 +122,5 @@ root/
 ## 许可证
 
 本项目采用 MIT 许可证。
+
+<p align="right">(<a href="#readme-top">返回顶部</a>)</p>
