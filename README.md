@@ -21,7 +21,7 @@
 ## 项目结构
 
 ```markdown
-url2qr/
+root/
 ├── src/
 │   ├── js/
 │   │   ├── qrcode.js      # QR码生成库
