@@ -1,25 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // 获取开关元素
     const toggle = document.getElementById('qrToggle');
-    
-    // 加载当前设置
+
+    // 从存储中获取当前状态
     chrome.storage.sync.get(['qrCodeEnabled'], function(result) {
+        // 设置开关初始状态，默认为开启
         toggle.checked = result.qrCodeEnabled !== undefined ? result.qrCodeEnabled : true;
     });
-    
+
     // 监听开关变化
     toggle.addEventListener('change', function() {
+        // 保存新状态到存储
         chrome.storage.sync.set({
             qrCodeEnabled: toggle.checked
         }, function() {
-            // 通知当前标签页更新二维码状态
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                if (tabs[0]) {
-                    chrome.tabs.sendMessage(tabs[0].id, {
-                        type: 'toggleQRCode',
-                        enabled: toggle.checked
-                    });
-                }
-            });
+            console.log('QR code display is ' + (toggle.checked ? 'enabled' : 'disabled'));
         });
     });
 }); 
