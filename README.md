@@ -1,4 +1,4 @@
-# 网页二维码 Chrome 插件
+# WebQR-Generater
 
 一个Chrome 扩展程序，可以为当前访问的网页生成带有网站图标的二维码。
 
@@ -31,6 +31,7 @@ root/
 │   ├── css/
 │   │   ├── content.css    # 内容样式
 │   │   └── popup.css      # 弹出窗口样式
+│   │   └── style.css      # 全局样式
 │   └── html/
 │       └── popup.html     # 弹出窗口HTML
 ├── icons/
@@ -40,13 +41,32 @@ root/
 └── manifest.json
 ```
 
-## 使用方法
+## 安装方法
 
-1. 在 Chrome 浏览器中安装插件
-2. 自动生成当前页面的二维码
-3. 使用手机扫描二维码即可访问当前页面 
+1. 访问 https://github.com/Harryleft/WebQR-Generator
+2. 点击“Code”按钮，选择“Download ZIP”   
+3. 解压下载的文件
+4. 访问：chrome://extensions/
+5. 开启开发者模式
+6. 点击“加载已解压的扩展程序”
+7. 选择步骤3解压后的目录
+8. 安装完成后，扩展栏会出现插件图标
+
+## 使用说明
+1. 插件安装后会自动在每个网页右下角生成二维码
+2. 点击浏览器扩展栏的插件图标，可以控制二维码的显示/隐藏
+3. 二维码显示状态会自动保存
+4. 使用手机扫描二维码即可访问当前网页
+5. 二维码会自动跟随网页切换而更新 
 
 
 ## 致谢
 
-感谢【AI进化论-花生】的[知识星球](https://articles.zsxq.com/id_pi7w45s5sqg3.html)分享，以及感谢Cursor提供的AI辅助功能，让我有机会快速上手Chrome插件开发以解决现实问题。
+- 感谢【AI进化论-花生】的[知识星球](https://articles.zsxq.com/id_pi7w45s5sqg3.html)分享
+- 感谢 [Cursor](https://www.cursor.com/) 提供的 AI 辅助功能
+- 感谢 [qrcodejs2](https://github.com/davidshimjs/qrcodejs) 提供二维码生成功能
+
+
+## 许可证
+
+本项目采用 MIT 许可证，详情请参见 LICENSE 文件。
