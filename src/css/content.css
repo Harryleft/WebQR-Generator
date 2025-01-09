@@ -11,12 +11,8 @@
     transition: opacity 0.3s ease;
 }
 
-/*#qr-container:hover {*/
-/*    opacity: 0.5;*/
-/*}*/
-
 #qr-container {
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
 .qr-wrapper {
