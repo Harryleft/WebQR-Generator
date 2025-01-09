@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 保存新状态到存储
         chrome.storage.sync.set({
             qrCodeEnabled: toggle.checked
-        }, function() {
+        }, function() { 
             console.log('QR code display is ' + (toggle.checked ? 'enabled' : 'disabled'));
         });
     });

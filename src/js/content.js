@@ -1,8 +1,5 @@
-console.log('[Content] Content script loaded!');
-
 // 生成二维码
 function generateQRCode(container) {
-    console.log('[Content] 开始生成二维码');
     try {
         // 创建二维码包装器
         const qrWrapper = document.createElement('div');
@@ -42,8 +39,6 @@ function generateQRCode(container) {
         
         faviconOverlay.appendChild(faviconInQR);
         qrElement.appendChild(faviconOverlay);
-        
-        console.log('[Content] 二维码生成成功');
     } catch (error) {
         console.error('[Content] 生成二维码失败:', error);
     }
@@ -51,14 +46,12 @@ function generateQRCode(container) {
 
 // 创建二维码容器
 function createQRContainer() {
-    console.log('[Content] 创建二维码容器');
     try {
         // 首先检查是否启用了二维码显示
         chrome.storage.sync.get(['qrCodeEnabled'], function(result) {
             const isEnabled = result.qrCodeEnabled !== undefined ? result.qrCodeEnabled : true; // 默认启用
             
             if (!isEnabled) {
-                console.log('[Content] 二维码显示已禁用');
                 return;
             }
             
@@ -68,9 +61,6 @@ function createQRContainer() {
                 
                 document.body.appendChild(container);
                 generateQRCode(container);
-                console.log('[Content] 二维码容器创建成功');
-            } else {
-                console.log('[Content] 二维码容器已存在');
             }
         });
     } catch (error) {
@@ -80,26 +70,17 @@ function createQRContainer() {
 
 // 初始化函数
 function initializeQRCode() {
-    console.log('[Content] 初始化二维码');
-    console.log('[Content] document.readyState:', document.readyState);
     if (document.readyState === 'loading') {
-        console.log('[Content] 添加 DOMContentLoaded 监听器');
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('[Content] DOMContentLoaded 触发');
             setTimeout(createQRContainer, 1000);
         });
     } else {
-        console.log('[Content] 直接设置延时器');
-        setTimeout(() => {
-            console.log('[Content] 延时器触发，准备创建容器');
-            createQRContainer();
-        }, 1000);
+        setTimeout(createQRContainer, 1000);
     }
 }
 
 // 监听页面变化，确保二维码始终存在
-const observer = new MutationObserver((mutations) => {
-    console.log('[Content] DOM变化检测:', mutations.length, '个变化');
+const observer = new MutationObserver(() => {
     if (!document.getElementById('qr-container')) {
         createQRContainer();
     }
@@ -107,14 +88,10 @@ const observer = new MutationObserver((mutations) => {
 
 // 开始观察 DOM 变化
 function startObserving() {
-    console.log('[Content] 开始设置观察器');
     if (document.body) {
-        console.log('[Content] body 已存在，添加观察器');
         observer.observe(document.body, { childList: true });
     } else {
-        console.log('[Content] body 不存在，等待 DOMContentLoaded');
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('[Content] DOMContentLoaded 触发，添加观察器');
             observer.observe(document.body, { childList: true });
         });
     }
@@ -122,13 +99,10 @@ function startObserving() {
 
 // 使用立即执行函数确保初始化代码执行
 (function() {
-    console.log('[Content] 开始初始化');
     try {
         setTimeout(() => {
-            console.log('[Content] 延迟初始化开始');
             initializeQRCode();
             startObserving();
-            console.log('[Content] 延迟初始化完成');
         }, 100);
     } catch (error) {
         console.error('[Content] 初始化过程出错:', error);
@@ -143,10 +117,8 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
         
         if (!isEnabled && container) {
             container.remove();
-            console.log('[Content] 二维码已移除');
         } else if (isEnabled && !container) {
             createQRContainer();
-            console.log('[Content] 二维码已重新显示');
         }
     }
 });
